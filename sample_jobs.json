@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Senior Frontend Developer",
+    "company": "TechFlow",
+    "location": "Remote",
+    "description": "We are looking for a Senior Frontend Developer expert in React and TypeScript. You will lead the development of our dashboard and mentor junior developers.",
+    "required_skills": ["React", "TypeScript", "Tailwind CSS", "Redux"],
+    "experience_required": "5+ years"
+  },
+  {
+    "title": "Backend AI Engineer",
+    "company": "Neural Systems",
+    "location": "San Francisco, CA",
+    "description": "Join our AI team to build scalable backends for generative models. Experience with Python, FastAPI, and vector databases like Supabase or FAISS is required.",
+    "required_skills": ["Python", "FastAPI", "PostgreSQL", "PyTorch", "LLMs"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "Full Stack Developer",
+    "company": "GrowthLoop",
+    "location": "New York, NY",
+    "description": "Build end-to-end features for our marketing automation platform. Must be comfortable with Node.js and Next.js.",
+    "required_skills": ["Node.js", "Next.js", "PostgreSQL", "AWS"],
+    "experience_required": "2+ years"
+  },
+  {
+    "title": "DevOps Engineer",
+    "company": "CloudNative",
+    "location": "Remote",
+    "description": "Optimize our CI/CD pipelines and manage Kubernetes clusters. Focus on security and scalability.",
+    "required_skills": ["Kubernetes", "Docker", "Terraform", "AWS", "GitHub Actions"],
+    "experience_required": "4+ years"
+  },
+  {
+    "title": "Data Scientist",
+    "company": "InsightData",
+    "location": "Austin, TX",
+    "description": "Apply statistical modeling and machine learning to solve complex business problems. Proficiency in Python and SQL is essential.",
+    "required_skills": ["Python", "SQL", "Pandas", "Scikit-Learn", "Tableau"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "Mobile App Developer",
+    "company": "AppForge",
+    "location": "Remote",
+    "description": "Develop high-performance mobile applications using Flutter for iOS and Android.",
+    "required_skills": ["Flutter", "Dart", "Firebase", "REST APIs"],
+    "experience_required": "2+ years"
+  },
+  {
+    "title": "Security Engineer",
+    "company": "SafeGuard",
+    "location": "Washington, D.C.",
+    "description": "Protect our infrastructure from threats. Perform vulnerability assessments and implement security protocols.",
+    "required_skills": ["Cybersecurity", "Network Security", "Python", "Cloud Security"],
+    "experience_required": "5+ years"
+  },
+  {
+    "title": "Product Designer",
+    "company": "CreativeMind",
+    "location": "Los Angeles, CA",
+    "description": "Create intuitive UI/UX designs for our consumer-facing web and mobile products.",
+    "required_skills": ["Figma", "Adobe XD", "Prototyping", "UI/UX"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "Cloud Architect",
+    "company": "GlobalCloud",
+    "location": "Seattle, WA",
+    "description": "Design and oversee the migration of legacy systems to a modern cloud-native architecture.",
+    "required_skills": ["AWS", "Azure", "Cloud Migration", "Enterprise Architecture"],
+    "experience_required": "8+ years"
+  },
+  {
+    "title": "QA Automation Engineer",
+    "company": "QualityFirst",
+    "location": "Remote",
+    "description": "Build automated testing frameworks for web applications to ensure high-quality software releases.",
+    "required_skills": ["Selenium", "Pytest", "Jest", "CI/CD"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "Machine Learning Engineer",
+    "company": "FutureAI",
+    "location": "Toronto, ON",
+    "description": "Develop and deploy machine learning models at scale. Focus on NLP and computer vision.",
+    "required_skills": ["Python", "TensorFlow", "Keras", "Opencv"],
+    "experience_required": "4+ years"
+  },
+  {
+    "title": "iOS Developer",
+    "company": "SwiftDev",
+    "location": "Cupertino, CA",
+    "description": "Build premium iOS applications using Swift and SwiftUI. Deep understanding of Apple's Human Interface Guidelines.",
+    "required_skills": ["Swift", "SwiftUI", "CoreData", "iOS SDK"],
+    "experience_required": "4+ years"
+  },
+  {
+    "title": "Blockchain Developer",
+    "company": "CryptoHub",
+    "location": "Remote",
+    "description": "Develop smart contracts and decentralized applications on Ethereum and Polygon.",
+    "required_skills": ["Solidity", "Web3.js", "Ethereum", "Smart Contracts"],
+    "experience_required": "2+ years"
+  },
+  {
+    "title": "Embedded Systems Engineer",
+    "company": "IotCore",
+    "location": "Boston, MA",
+    "description": "Work on firmware for IoT devices. Experience with C/C++ and ARM microcontrollers is necessary.",
+    "required_skills": ["C", "C++", "RTOS", "Firmware", "ARM"],
+    "experience_required": "5+ years"
+  },
+  {
+    "title": "Technical Writer",
+    "company": "DocuTech",
+    "location": "Remote",
+    "description": "Create comprehensive documentation for developers, including API guides and tutorials.",
+    "required_skills": ["Technical Writing", "Markdown", "Git", "Docusaurus"],
+    "experience_required": "2+ years"
+  },
+  {
+    "title": "Rust Developer",
+    "company": "FastSystems",
+    "location": "Berlin, Germany",
+    "description": "Build high-performance, memory-safe systems software using Rust.",
+    "required_skills": ["Rust", "Systems Programming", "WebAssembly", "C++"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "Go Developer",
+    "company": "MicroScale",
+    "location": "Remote",
+    "description": "Develop microservices in Go for our cloud-native banking platform.",
+    "required_skills": ["Go", "gRPC", "Protobuf", "Docker"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "SRE Engineer",
+    "company": "Reliably",
+    "location": "Dublin, Ireland",
+    "description": "Ensure the reliability and availability of our global platform through automation and monitoring.",
+    "required_skills": ["Python", "Go", "Prometheus", "Grafana", "SLOs"],
+    "experience_required": "4+ years"
+  },
+  {
+    "title": "Salesforce Developer",
+    "company": "CRM Pro",
+    "location": "Remote",
+    "description": "Customize and extend Salesforce using Apex and Lightning Web Components.",
+    "required_skills": ["Apex", "LWC", "Salesforce Cloud", "SOQL"],
+    "experience_required": "3+ years"
+  },
+  {
+    "title": "Data Engineer",
+    "company": "BigDataCorp",
+    "location": "Chicago, IL",
+    "description": "Build and maintain data pipelines using Spark and Airflow. Optimize data storage in our warehouse.",
+    "required_skills": ["Apache Spark", "Airflow", "Python", "Snowflake", "ETL"],
+    "experience_required": "4+ years"
+  }
+]
