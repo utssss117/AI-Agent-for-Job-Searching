@@ -12,6 +12,15 @@ class LiveJobFetcher:
     def __init__(self):
         self.app_id = os.getenv("ADZUNA_APP_ID")
         self.app_key = os.getenv("ADZUNA_APP_KEY")
+        
+        # Fallback for Streamlit Cloud
+        if not self.app_id or not self.app_key:
+            try:
+                import streamlit as st
+                self.app_id = self.app_id or st.secrets.get("ADZUNA_APP_ID")
+                self.app_key = self.app_key or st.secrets.get("ADZUNA_APP_KEY")
+            except:
+                pass
         self.supabase = get_supabase_client()
         self.engine = EmbeddingEngine()
         

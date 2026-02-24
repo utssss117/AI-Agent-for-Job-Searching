@@ -7,8 +7,17 @@ load_dotenv()
 class CoverLetterGenerator:
     def __init__(self, api_key=None):
         self.api_key = api_key or os.getenv("GROQ_API_KEY")
+        
+        # Fallback for Streamlit Cloud
         if not self.api_key:
-            raise ValueError("Groq API key not found. Set GROQ_API_KEY environment variable.")
+            try:
+                import streamlit as st
+                self.api_key = st.secrets.get("GROQ_API_KEY")
+            except:
+                pass
+
+        if not self.api_key:
+            raise ValueError("Groq API key not found. Set it in .env or Streamlit Secrets.")
         self.client = Groq(api_key=self.api_key)
         self.model = "llama-3.1-8b-instant"
 

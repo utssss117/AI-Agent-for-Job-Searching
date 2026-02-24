@@ -11,8 +11,21 @@ def get_supabase_client() -> Client:
     url = os.getenv("SUPABASE_URL")
     key = os.getenv("SUPABASE_KEY")
     
+    # Fallback for Streamlit Cloud Secrets
     if not url or not key:
-        raise ValueError("SUPABASE_URL and SUPABASE_KEY environment variables are missing.")
+        try:
+            import streamlit as st
+            url = st.secrets.get("SUPABASE_URL")
+            key = st.secrets.get("SUPABASE_KEY")
+        except:
+            pass
+
+    if not url or not key:
+        raise ValueError(
+            "SUPABASE_URL and SUPABASE_KEY are missing. "
+            "Local: Add them to your .env file. "
+            "Streamlit Cloud: Add them to 'Secrets' in the app settings."
+        )
     
     if "your_supabase" in url or "your_supabase" in key:
         raise ValueError(

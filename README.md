@@ -1,5 +1,7 @@
 # 📄 AI Resume Analyzer & Job Search Agent
 
+🚀 **[Live Demo](https://ai-agent-for-job-searching-majisefmrvm3jvgx3mapo3.streamlit.app/)**
+
 An intelligent, AI-driven application designed to help job seekers analyze their resumes, match them against live job postings, evaluate ATS compatibility, and automatically draft cover letters.
 
 The application leverages **Streamlit** for a seamless user interface, **Groq (Llama 3.1)** for blazing-fast LLM operations, and **Supabase (pgvector)** for storing and matching job descriptions using vector embeddings.
@@ -71,6 +73,19 @@ streamlit run app.py
 ```
 
 The app will launch in your default web browser at `http://localhost:8501`.
+
+## ☁️ Deploying to Streamlit Cloud
+
+1. Push your code to a GitHub repository (ensure `.env` is ignored by `.gitignore`).
+2. Connect your repository to [Streamlit Cloud](https://share.streamlit.io/).
+3. In the Streamlit Cloud dashboard, go to **Settings > Secrets** and paste your `.env` content:
+   ```toml
+   GROQ_API_KEY = "your_key"
+   SUPABASE_URL = "your_url"
+   SUPABASE_KEY = "your_key"
+   ADZUNA_APP_ID = "your_id"
+   ADZUNA_APP_KEY = "your_key"
+   ```
 
 ## 🧠 How It Works
 
