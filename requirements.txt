@@ -6,5 +6,5 @@ python-dotenv
 requests
 sentence-transformers
 pymupdf
-torch==2.2.2+cpu
+torch==2.10.0+cpu
 numpy
