@@ -1,9 +1,9 @@
 import os
 import requests
 import re
-from supabase_client import get_supabase_client
-from embedding_engine import EmbeddingEngine
-from utils import clean_text
+from core.supabase_client import get_supabase_client
+from core.embedding_engine import EmbeddingEngine
+from core.utils import clean_text
 from dotenv import load_dotenv
 
 load_dotenv()

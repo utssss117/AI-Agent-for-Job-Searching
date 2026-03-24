@@ -1,7 +1,7 @@
 import json
 import os
-from supabase_client import get_supabase_client
-from embedding_engine import EmbeddingEngine
+from core.supabase_client import get_supabase_client
+from core.embedding_engine import EmbeddingEngine
 
 def load_jobs_to_supabase(json_file_path: str):
     """

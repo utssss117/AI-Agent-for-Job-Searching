@@ -1,8 +1,8 @@
 import os
 import json
 from groq import Groq
-from job_matcher import get_top_jobs
-from ats_engine import get_ats_score
+from .job_matcher import get_top_jobs
+from .ats_engine import get_ats_score
 from dotenv import load_dotenv
 
 load_dotenv()

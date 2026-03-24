@@ -1,11 +1,12 @@
 import streamlit as st
 import json
-from resume_parser import extract_text_from_pdf
-from llm_analyzer import LLMAnalyzer
-from live_job_fetcher import LiveJobFetcher
-from cover_letter_gen import CoverLetterGenerator
-from style_utils import inject_custom_css, job_card_html
-from supabase_client import get_supabase_client
+from core.resume_parser import extract_text_from_pdf
+from core.llm_analyzer import LLMAnalyzer
+from engines.live_job_fetcher import LiveJobFetcher
+from engines.cover_letter_gen import CoverLetterGenerator
+from core.style_utils import inject_custom_css, job_card_html, database_job_card_html
+from core.supabase_client import get_supabase_client
+from engines.matching_engine import analyze_job_matches
 
 st.set_page_config(page_title="SkyNet AI • Resume Analysis", page_icon="🚀", layout="wide")
 inject_custom_css()
@@ -78,7 +79,7 @@ with tab1:
 
             # Results Display Phase
             st.divider()
-            from style_utils import resume_summary_html
+            from core.style_utils import resume_summary_html
             st.markdown(resume_summary_html(result), unsafe_allow_html=True)
             
             # Download button
@@ -94,7 +95,7 @@ with tab1:
             st.divider()
             st.header("🎯 Top Matched Jobs")
             
-            from matching_engine import analyze_job_matches
+            from engines.matching_engine import analyze_job_matches
             
             with st.spinner("Analyzing skill gaps and matching jobs..."):
                 job_matches = analyze_job_matches(result, resume_text)
@@ -172,7 +173,7 @@ with tab2:
     st.header("📁 Job Database Explorer")
     st.write("View all jobs currently stored in your local matching engine.")
     
-    from style_utils import database_job_card_html
+    from core.style_utils import database_job_card_html
     try:
         supabase = get_supabase_client()
         response = supabase.table("jobs").select("*").execute()

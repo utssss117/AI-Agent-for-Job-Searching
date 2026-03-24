@@ -1,4 +1,4 @@
-from matching_engine import analyze_job_matches
+from engines.matching_engine import analyze_job_matches
 
 def check_engine():
     resume_data = {"skills": ["Python"]}

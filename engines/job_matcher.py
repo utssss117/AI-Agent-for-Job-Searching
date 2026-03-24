@@ -1,5 +1,5 @@
-from supabase_client import get_supabase_client
-from embedding_engine import EmbeddingEngine
+from core.supabase_client import get_supabase_client
+from core.embedding_engine import EmbeddingEngine
 
 def get_top_jobs(resume_text: str, threshold: float = 0.0, top_k: int = 5):
     """

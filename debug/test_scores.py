@@ -1,4 +1,4 @@
-from job_matcher import get_top_jobs
+from engines.job_matcher import get_top_jobs
 
 def check_scores():
     test_resume = "Python Developer with Machine Learning, React, and AWS experience."
