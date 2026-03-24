@@ -1,6 +1,6 @@
 # 📄 AI Resume Analyzer & Job Search Agent
 
-🚀 **[Live Demo](https://ai-agent-for-job-searching-majisefmrvm3jvgx3mapo3.streamlit.app/)**
+🚀 **[Live Demo](https://utssss117-ai-agent-for-job-searching-app-giybur.streamlit.app/)**
 
 An intelligent, AI-driven application designed to help job seekers analyze their resumes, match them against live job postings, evaluate ATS compatibility, and automatically draft cover letters.
 
