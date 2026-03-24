@@ -31,12 +31,17 @@ def load_jobs_to_supabase(json_file_path: str):
                 "embedding": embedding
             }
 
-            response = supabase.table("jobs").insert(data).execute()
-            print(f"Inserted: {job['title']} at {job['company']}")
+            try:
+                response = supabase.table("jobs").insert(data).execute()
+                print(f"Inserted: {job['title']} at {job['company']}")
+            except Exception as e:
+                print(f"Skipped/Error for {job['title']} at {job['company']}: {e}")
 
         print("Finished loading all jobs.")
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         print(f"Error during job loading: {e}")
 
 if __name__ == "__main__":

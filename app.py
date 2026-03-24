@@ -4,20 +4,17 @@ from resume_parser import extract_text_from_pdf
 from llm_analyzer import LLMAnalyzer
 from live_job_fetcher import LiveJobFetcher
 from cover_letter_gen import CoverLetterGenerator
+from style_utils import inject_custom_css, job_card_html
+from supabase_client import get_supabase_client
 
-st.set_page_config(page_title="AI Resume Analyzer", layout="wide")
+st.set_page_config(page_title="SkyNet AI • Resume Analysis", page_icon="🚀", layout="wide")
+inject_custom_css()
 
-st.title("📄 AI Resume Analyzer")
-st.markdown("Upload a PDF resume to extract structured data using Groq Llama 3.1.")
+st.title("📄 Job Search Agent")
+st.markdown("Upload your resume to find matching jobs and get insights.")
 
-# Sidebar for API Key and Live Search
+# Sidebar for Live Search
 with st.sidebar:
-    st.header("Settings")
-    api_key = st.text_input("Enter Groq API Key", type="password")
-    if not api_key:
-        st.info("Please provide a Groq API Key or set GROQ_API_KEY environment variable.")
-    
-    st.divider()
     st.header("Live Job Search")
     job_query = st.text_input("Job Title/Keywords", placeholder="e.g. Python Developer")
     job_location = st.text_input("Location", placeholder="e.g. London")
@@ -26,7 +23,7 @@ with st.sidebar:
 
 # Initialize Helper Classes
 live_fetcher = LiveJobFetcher()
-cover_letter_gen = CoverLetterGenerator(api_key=api_key if api_key else None)
+cover_letter_gen = CoverLetterGenerator(api_key=None)
 
 # Global Handle for Live Fetch (Works even without resume)
 if fetch_live:
@@ -51,13 +48,13 @@ if fetch_live:
 tab1, tab2 = st.tabs(["🔍 Resume Intelligence", "📁 Job Database Explorer"])
 
 with tab1:
-    st.subheader("Analyze Your Resume")
+    st.subheader("Your Resume Details")
     uploaded_file = st.file_uploader("Choose a PDF resume", type="pdf")
     
     if uploaded_file is not None:
         try:
             # Initialize LLM Analyzer
-            analyzer = LLMAnalyzer(api_key=api_key if api_key else None)
+            analyzer = LLMAnalyzer(api_key=None)
             
             # Processing Phase
             with st.status("Processing resume...", expanded=True) as status:
@@ -81,37 +78,21 @@ with tab1:
 
             # Results Display Phase
             st.divider()
-            col1, col2 = st.columns([1, 1])
+            from style_utils import resume_summary_html
+            st.markdown(resume_summary_html(result), unsafe_allow_html=True)
             
-            with col1:
-                st.subheader("Extracted Data Summary")
-                st.write(f"**Experience Years:** {result.get('experience_years', 'N/A')}")
-                st.write("**Domain Expertise:**", ", ".join(result.get("domain_expertise", [])))
-                st.write("**Strengths:**", ", ".join(result.get("strengths", [])))
-                
-                st.write("**Skills:**")
-                st.write(", ".join(result.get("skills", [])))
-                
-                st.write("**Education:**")
-                for edu in result.get("education", []):
-                    st.write(f"- {edu.get('degree')} @ {edu.get('institution')} ({edu.get('year')})")
-
-            with col2:
-                st.subheader("Structured JSON Output")
-                st.json(result)
-                
-                # Download button
-                json_str = json.dumps(result, indent=2)
-                st.download_button(
-                    label="Download JSON",
-                    data=json_str,
-                    file_name="resume_analysis.json",
-                    mime="application/json"
-                )
+            # Download button
+            json_str = json.dumps(result, indent=2)
+            st.download_button(
+                label="📥 Download Structured Analysis",
+                data=json_str,
+                file_name="resume_analysis.json",
+                mime="application/json"
+            )
             
             # --- Job Matching Section ---
             st.divider()
-            st.header("🎯 AI Job Match Analysis")
+            st.header("🎯 Top Matched Jobs")
             
             from matching_engine import analyze_job_matches
             
@@ -123,23 +104,17 @@ with tab1:
             else:
                 for match in job_matches:
                     score = match['match_percentage']
-                    color = "green" if score > 70 else "orange" if score > 40 else "red"
+                    # Premium Job Card
+                    st.markdown(job_card_html(
+                        match['job_title'], 
+                        match['company'], 
+                        match['location'], 
+                        score, 
+                        match['matched_skills'], 
+                        match['missing_skills']
+                    ), unsafe_allow_html=True)
                     
-                    with st.expander(f"**{match['job_title']}** at {match['company']} (Match: :{color}[{score}%])"):
-                        st.write(f"📍 **Location:** {match['location']}")
-                        
-                        m_col1, m_col2 = st.columns(2)
-                        with m_col1:
-                            st.write("✅ **Matched Skills**")
-                            matched = [s for s in match['matched_skills'] if s]
-                            st.write(", ".join(matched) if matched else "*None*")
-                                
-                        with m_col2:
-                            st.write("⚠️ **Missing Skills**")
-                            missing = [s for s in match['missing_skills'] if s]
-                            st.write(", ".join(missing) if missing else "*Perfect match!*")
-                        
-                        st.divider()
+                    with st.expander("📊 View Detailed ATS Analysis & Strategy"):
                         st.subheader("📊 ATS Evaluation")
                         ats = match.get('ats_analysis', {})
                         
@@ -197,7 +172,7 @@ with tab2:
     st.header("📁 Job Database Explorer")
     st.write("View all jobs currently stored in your local matching engine.")
     
-    from supabase_client import get_supabase_client
+    from style_utils import database_job_card_html
     try:
         supabase = get_supabase_client()
         response = supabase.table("jobs").select("*").execute()
@@ -208,10 +183,14 @@ with tab2:
         else:
             st.success(f"Currently tracking {len(jobs)} jobs in your local database.")
             for job in jobs:
-                with st.expander(f"**{job['title']}** at {job['company']} ({job['location']})"):
-                    st.write(f"**📝 Description summary:** {job['description'][:500]}...")
-                    if job.get('required_skills'):
-                        st.write(f"**🛠 Skills:** {', '.join(job['required_skills'])}")
-                    st.write(f"**💼 Experience Req:** {job.get('experience_required', 'N/A')}")
+                st.markdown(database_job_card_html(
+                    job['title'], 
+                    job['company'], 
+                    job['location'], 
+                    job['description'], 
+                    job.get('required_skills', [])
+                ), unsafe_allow_html=True)
+                with st.expander("🔍 View Full Description"):
+                    st.write(job['description'])
     except Exception as e:
         st.error(f"Error loading jobs from Supabase: {e}")
